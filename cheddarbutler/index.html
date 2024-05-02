@@ -1,0 +1,111 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<html>
+<head>
+	<title>index</title>
+	<meta content="PageBreeze Free HTML Editor (http://www.pagebreeze.com)" name="GENERATOR" />
+	<meta content="text/html;charset=ISO-8859-1" http-equiv="Content-Type" />
+	<style type="text/css">a.navwhite:link { text-decoration: none; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 10px; font-weight: bold; }
+a.navwhite:visited { text-decoration: none; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 10px; font-weight: bold; }
+a.navwhite:hover { text-decoration: underline; color: #ffffff; font-family: Verdana, Arial, sans-serif; font-size: 10px; font-weight: bold; }
+a.navblack:link { text-decoration: none; color: #000000; font-family: Verdana, Arial, sans-serif; font-size: 10px; font-weight: bold; }
+a.navblack:visited { text-decoration: none; color: #000000; font-family: Verdana, Arial, sans-serif; font-size: 10px; font-weight: bold; }
+a.navblack:hover { text-decoration: underline; color: #000000; font-family: Verdana, Arial, sans-serif; font-size: 10px; font-weight: bold; }
+	</style>
+	<style type="text/css"><!--
+h1 { font-family: Arial, sans-serif; font-size: 30px; color: #004080;}
+h2 { font-family: Arial, sans-serif; font-size: 18px; color: #004080;}
+
+body,p,b,i,em,dt,dd,dl,sl,caption,th,td,tr,u,blink,select,option,form,div,li { font-family: Arial, sans-serif; font-size: 12px; }
+
+/* IE Specific */
+body, textarea {
+  scrollbar-3dlight-color: #808080;
+  scrollbar-highlight-color: #808080;
+  scrollbar-face-color: #004080;
+  scrollbar-shadow-color: #808080;
+  scrollbar-darkshadow-color: #805B32;
+  scrollbar-arrow-color: #000000;
+  scrollbar-track-color: #F8EFE2;
+}
+/* END IE Specific */
+-->
+	</style>
+</head>
+<body bgcolor="#ffffff">
+<p pbzloc="217">&nbsp;</p>
+
+<table align="center" bgcolor="#004080" border="0" cellpadding="3" cellspacing="1" width="780">
+	<tbody>
+		<tr>
+			<td>
+			<h1 align="center"><br />
+			<span style="font-size: 20px"><span style="font-family: trebuchet ms,helvetica,sans-serif"><font color="#ffffff" pbzloc="219">Cheddar Butler: Option Chain Data Frame Creator</font></span></span></h1>
+
+			<p><span pbzloc="218" style="font-size: 20px">&nbsp;</span></p>
+			</td>
+		</tr>
+		<tr>
+			<td bgcolor="#c0c0c0">
+			<p align="center"><span style="font-size: 20px"><span style="font-family: trebuchet ms,helvetica,sans-serif">&nbsp;&nbsp; <a class="navblack" href="index.html">Home</a>&nbsp;| <a class="navblack" href="about.htm">About</a> |&nbsp;&nbsp;&nbsp;<a class="navblack" href="helpandsupport.htm">Help and Support</a>&nbsp;&nbsp;|&nbsp; <a class="navblack" href="sampleoutputs.htm">Sample Outputs&nbsp;</a>&nbsp; |&nbsp; <a class="navblack" href="download.htm">Download</a>&nbsp; |&nbsp; <a class="navblack" href="http://judiandmoni.com">Judi and Moni</a></span><font face="Trebuchet MS">|&nbsp;&nbsp;</font><a class="navblack" href="references.htm">References</a></span></p>
+			</td>
+		</tr>
+		<tr>
+			<td bgcolor="#ffffff">
+			<p align="center"><span style="font-size: 20px"><span style="font-family: trebuchet ms,helvetica,sans-serif">&nbsp;</span></span></p>
+
+			<h2 align="left"><span style="font-size: 20px"><span style="font-family: trebuchet ms,helvetica,sans-serif">Experimental Trading Automation Script</span></span></h2>
+
+			<p align="left"><span style="font-size: 18px"><span style="font-family: times new roman,times,serif"><span>The latest version of Cheddar Butler builds upon the first and second by adding more explicit functionalities that utilize the Alpaca Trading API, and initial sandbox scripts for Ally, to be released at a later date this year. </span></span></span></p>
+
+			<p align="left"><span style="font-size: 18px"><span style="font-family: times new roman,times,serif"><span>There are 3 main parts. The first takes user inputs like the desired date range, the stock tickers to analyze, and premium price cutoffs. After these 3 input variables are obtained from the user the program searches for the stock via the API and returns a Pandas DataFrame that has been constructed to be user friendly. In addition to this stock DataFrame which contains EMA values those stocks that pass the &quot;golden cross&quot; test will be&nbsp;added to the option DataFrame, still part of the second part. </span></span></span></p>
+
+			<p align="left"><span style="font-size: 18px"><span style="font-family: times new roman,times,serif"><span>Halfway through this second part the inital list of stocks will have been bifurcated into two different lists, one for stocks to &quot;go long&quot; on and another one for stocks to &quot;go short&quot; on. Option chains are pulled from the respective API and a second Pandas DataFrame is constructed, this one detailing the option chain that is within the range of user input. From these two lists the third part can occur. </span></span></span></p>
+
+			<p align="left"><span style="font-size: 18px"><span style="font-family: times new roman,times,serif">The third part consists of generating the results via the terminal and/or into a file if desired. </span></span></p>
+
+			<p align="left"><span style="font-size: 18px"><span style="font-family: times new roman,times,serif"><span>The latest version of this project may be found <a href="https://github.com/Photon1c/cheddarbutler_v3_goldenpotato">here</a>.</span></span></span></p>
+
+			<p align="left"><span style="font-size: 18px"><span style="font-family: times new roman,times,serif"><span>Released in 2022, <a href="https://github.com/pyscript/pyscript">Pyscript</a> has been a great data interaction tool for this project.</span>&nbsp;It has more than 96 contributors on Github.</span></span></p>
+
+			<p><span style="font-size: 16px"><span style="font-family: trebuchet ms,helvetica,sans-serif">&nbsp;</span></span></p>
+
+			<p>&nbsp;</p>
+
+			<p>&nbsp;</p>
+
+			<p>&nbsp;</p>
+
+			<p>&nbsp;</p>
+
+			<p>&nbsp;</p>
+
+			<p>&nbsp;</p>
+
+			<p>&nbsp;</p>
+
+			<p>&nbsp;</p>
+
+			<p>&nbsp;</p>
+
+			<p>&nbsp;</p>
+
+			<p>&nbsp;</p>
+
+			<p>&nbsp;</p>
+
+			<p>&nbsp;</p>
+			</td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+		</tr>
+	</tbody>
+</table>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+</body>
+</html>

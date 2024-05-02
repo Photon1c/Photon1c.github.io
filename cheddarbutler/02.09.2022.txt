@@ -1,0 +1,131 @@
+The contents of portfolio are:
+[redacted]
+The current cash balance is:
+[redacted]
+The revised dataframe for stocks is:
+Empty DataFrame
+The revised dataframe for options is:
+[redacted]
+The revised dataframe for cash is:
+[redacted]
+The target symbols of owned stocks are:
+There are no owned stocks at the moment
+The options owned are:
+[redacted]
+The revised dataframe for cash is:
+[redacted]
+The target symbols of owned stocks are:
+No target symbols of owned stocks
+The target quote prices for the target symbols of owned stocks are:
+No symbols of owned stocks in portfolio warranting selling
+The passed symbols of owned stocks to sell are:
+No target quote prices of owned stocks to sell
+The target symbols of owned options are:
+No owned stock options in target symbols
+The target quote prices for the target symbols of owned options are:
+No symbols in portfolio warranting selling
+The passed symbols of owned options to sell are:
+No target quote prices in owned options
+Initiating stock and option buy order execution function...
+The top daily stock gainers are:
+   change    last symbol  totalVolume
+0    6.65  311.21   MSFT     31339528
+1    4.75  147.23    DIS     25893314
+2    4.69  498.10    UNH      4178476
+3    4.61  222.04    CRM      8989690
+4    4.43  374.53     GS      3632536
+5    2.93  230.87      V     12306999
+6    2.93  364.37     HD      3831104
+7    2.73  146.26    NKE      6427025
+8    2.59  215.86     BA      8851028
+9    2.40  196.40    AXP      6857110
+The top daily stock losers are:
+   change    last symbol  totalVolume
+0   -3.82  237.19   AMGN      5075320
+1   -0.96   61.04     KO     30071396
+2   -0.38   76.53    MRK     22130630
+3   -0.36  159.60     PG     11017830
+4   -0.30  137.69    WMT      9730846
+5   -0.22  259.86    MCD      3362542
+6   -0.02  171.49    JNJ     10147373
+The cumulative gain for the up stocks is:
+        Cumulative gain:
+change              38.71
+The cumulative loss for the down stocks is:
+        Cumulative loss:
+change              -6.06
+Stock MSFT is not within selling parameters
+Stock DIS is not within selling parameters
+Stock UNH is not within selling parameters
+Stock CRM is not within selling parameters
+Stock GS is not within selling parameters
+Stock V is not within selling parameters
+Stock HD is not within selling parameters
+Stock NKE is not within selling parameters
+Stock BA is not within selling parameters
+Stock AXP is not within selling parameters
+Stock AMGN is not within selling parameters
+Stock KO is not within buying parameters
+Stock MRK is not within buying parameters
+Stock PG is not within buying parameters
+Stock WMT is not within buying parameters
+Stock MCD is not within selling parameters
+Stock JNJ is not within buying parameters
+The aggregate mover list is:
+    change                                        description direction    last symbol  totalVolume
+0    6.65               Microsoft Corporation - Common Stock        up  311.21   MSFT     31339528
+1    4.75             Walt Disney Company (The) Common Stock        up  147.23    DIS     25893314
+2    4.69  UnitedHealth Group Incorporated Common Stock (DE)        up  498.10    UNH      4178476
+3    4.61                    Salesforce.com Inc Common Stock        up  222.04    CRM      8989690
+4    4.43       Goldman Sachs Group, Inc. (The) Common Stock        up  374.53     GS      3632536
+5    2.93                                          Visa Inc.        up  230.87      V     12306999
+6    2.93                Home Depot, Inc. (The) Common Stock        up  364.37     HD      3831104
+7    2.73                            Nike, Inc. Common Stock        up  146.26    NKE      6427025
+8    2.59                  Boeing Company (The) Common Stock        up  215.86     BA      8851028
+9    2.40              American Express Company Common Stock        up  196.40    AXP      6857110
+0   -3.82                          Amgen Inc. - Common Stock      down  237.19   AMGN      5075320
+1   -0.96               Coca-Cola Company (The) Common Stock      down   61.04     KO     30071396
+2   -0.38           Merck & Company, Inc. Common Stock (new)      down   76.53    MRK     22130630
+3   -0.36        Procter & Gamble Company (The) Common Stock      down  159.60     PG     11017830
+4   -0.30                          Walmart Inc. Common Stock      down  137.69    WMT      9730846
+5   -0.22                McDonald's Corporation Common Stock      down  259.86    MCD      3362542
+6   -0.02                     Johnson & Johnson Common Stock      down  171.49    JNJ     10147373
+The target symbols to go long on are:
+['MSFT', 'DIS', 'UNH', 'CRM', 'GS', 'V', 'HD', 'NKE', 'BA', 'AXP', 'AMGN', 'MCD']
+The target symbols to short are:
+ ['KO', 'MRK', 'PG', 'WMT', 'JNJ']
+Call options for  MSFT  are not within buying parameters
+Call options for  DIS  are not within buying parameters
+Call options for  UNH  are not within buying parameters
+Call options for  CRM  are not within buying parameters
+Call options for  GS  are not within buying parameters
+Call options for  V  are not within buying parameters
+Call options for  HD  are not within buying parameters
+Call options for  NKE  are:
+              Symbol Expiration Date  Strike Price  Ask Price  Volatility  Volume  Delta
+2022-02-11:1    NKE    2022-02-11:1         147.0       0.93      23.905    2005  0.407
+Call options for  BA  are not within buying parameters
+Call options for  AXP  are not within buying parameters
+Call options for  AMGN  are not within buying parameters
+Call options for  MCD  are not within buying parameters
+Put options for  KO  are:
+               Symbol Expiration Date  Strike Price  Ask Price  Volatility  Volume  Delta
+2022-02-11:1      KO    2022-02-11:1          62.0       1.51      43.581    2403 -0.655
+2022-02-18:8      KO    2022-02-18:8          62.0       1.65      26.794    1044 -0.631
+2022-02-25:15     KO   2022-02-25:15          62.0       1.79      21.469     607 -0.623
+2022-03-04:22     KO   2022-03-04:22          62.0       1.88      19.603      98 -0.611
+Put options for  MRK  are:
+               Symbol Expiration Date  Strike Price  Ask Price  Volatility  Volume  Delta
+2022-02-11:1     MRK    2022-02-11:1          77.0       0.90      20.793      63 -0.633
+2022-02-18:8     MRK    2022-02-18:8          77.0       1.34      20.230      61 -0.571
+2022-02-25:15    MRK   2022-02-25:15          77.0       1.65      20.458      18 -0.548
+2022-03-04:22    MRK   2022-03-04:22          77.0       1.91      20.148      25 -0.539
+Put options for  PG  are:
+              Symbol Expiration Date  Strike Price  Ask Price  Volatility  Volume  Delta
+2022-02-11:1     PG    2022-02-11:1         160.0       1.22      16.897     193 -0.566
+Put options for  WMT  are:
+              Symbol Expiration Date  Strike Price  Ask Price  Volatility  Volume  Delta
+2022-02-11:1    WMT    2022-02-11:1         138.0       1.07      18.361     656 -0.553
+Put options for  JNJ  are:
+              Symbol Expiration Date  Strike Price  Ask Price  Volatility  Volume  Delta
+2022-02-11:1    JNJ    2022-02-11:1         172.5       1.51       13.71      18 -0.687

@@ -1,0 +1,36 @@
+Enter tickers separated by commas:
+BBBY, WBA
+Stock  BBBY is within buying parameters. Dataframe:
+
+         Date  Close     Volume  EMA9  EMA20  EMA50 Symbol
+40 2023-01-11  3.075  137201182  2.25   2.44   2.71   BBBY
+
+
+Calls for  BBBY are:
+       lstTrade  strike  last   bid   ask  volume     OI        IV
+40  01/11/2023    35.0  0.02  0.02  0.03    1102  13102  6.125002
+41  01/11/2023    36.0  0.02  0.01  0.03      30    871  6.000002
+42  01/11/2023    37.0  0.02  0.02  0.03      37   5394  6.187502
+43  01/11/2023    38.0  0.02  0.02  0.03      14   5370  6.250002
+44  01/11/2023    39.0  0.02  0.02  0.03      71   1813  6.312502
+         Date  Close     Volume  EMA9  EMA20  EMA50 Symbol
+40 2023-01-11  3.075  137201182  2.25   2.44   2.71   BBBY
+
+
+Stock BBBY is not within selling parameters
+Stock WBA is not within buying parameters
+Puts for  WBA are:
+       lstTrade  strike   last    bid    ask  volume  OI       IV
+40  12/01/2022    65.0  23.80  27.55  27.80    15.0   0  0.00001
+41  10/28/2022    70.0  34.45  28.20  28.45     1.0   0  0.00001
+42  10/28/2022    75.0  39.35  33.15  33.45     2.0   0  0.00001
+43  11/02/2022    80.0  43.90  38.70  39.10     2.0   1  0.00001
+Stock  WBA is within selling parameters. Dataframe:
+
+         Date      Close   Volume   EMA9  EMA20  EMA50 Symbol
+40 2023-01-11  36.825001  2230408  36.96  37.83  38.79    WBA
+
+
+The stocks to go long on are:  ['BBBY']
+
+The stocks to go short on are:  ['WBA']
