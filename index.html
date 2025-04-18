@@ -16,11 +16,17 @@ The following projects are in active development, check back for updates:
   <div id="content">Loading...</div>
 
   <script>
-    fetch('https://github.com/Photon1c/Photon1c.github.io/blob/main/2025_updates.md') // Make sure it's in the same directory
-      .then(res => res.text())
-      .then(md => {
-        document.getElementById('content').innerHTML = marked.parse(md);
-      });
+    window.addEventListener('DOMContentLoaded', () => {
+      fetch('2025_updates.md')
+        .then(response => response.text())
+        .then(markdown => {
+          document.getElementById('content').innerHTML = marked.parse(markdown);
+        })
+        .catch(error => {
+          console.error('Failed to load markdown:', error);
+          document.getElementById('content').innerText = 'Failed to load resume.';
+        });
+    });
   </script>
   
 <br>
