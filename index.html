@@ -17,7 +17,8 @@ The following projects are in active development, check back for updates:
 
   <script>
     window.addEventListener('DOMContentLoaded', () => {
-      fetch('2025_updates.md')
+      fetch('https://raw.githubusercontent.com/Photon1c/Photon1c.github.io/main/2025_updates.md
+')
         .then(response => response.text())
         .then(markdown => {
           document.getElementById('content').innerHTML = marked.parse(markdown);
