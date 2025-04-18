@@ -85,7 +85,7 @@ Integrated OpenAI APIs, Streamlink, and structured `.json`/`.csv` pipelines acro
 
 ## 10. 🎨 Creative Technical Storytelling
 **Project Example:**  
-Projects like **The Beer Pee App**, **Alpha Cockpit Seed Radar**, and **Naked Trader Defense System** blend humor, finance, and real analytics.
+Projects like **Dermasim**, **Alpha Cockpit Seed Radar**, and **Naked Trader Defense System** blend humor, finance, and real analytics.
 
 **📌 Resume Bullet:**  
 > Crafted engaging technical applications blending humor, finance, and visual metaphors to simplify complex concepts for broader accessibility.
