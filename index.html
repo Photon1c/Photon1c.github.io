@@ -11,24 +11,9 @@
 <br>
 <br>
 <br>
-The following projects are in active development, check back for updates:
-<br>
-  <div id="content">Loading...</div>
+<details>
+<summary>The following projects are in active development, check back for updates:</summary>
 
-  <script>
-    window.addEventListener('DOMContentLoaded', () => {
-      fetch('https://raw.githubusercontent.com/Photon1c/Photon1c.github.io/main/2025_updates.md
-')
-        .then(response => response.text())
-        .then(markdown => {
-          document.getElementById('content').innerHTML = marked.parse(markdown);
-        })
-        .catch(error => {
-          console.error('Failed to load markdown:', error);
-          document.getElementById('content').innerText = 'Failed to load resume.';
-        });
-    });
-  </script>
   
 <br>
 - Gamma Dashboard - Displays Gamma function distribution for selected option chain (NDA bound and broker API specific)
@@ -46,6 +31,7 @@ The following projects are in active development, check back for updates:
 - Microsoft Teams Power Automate app - Clerical assistant app that routes calls, emails and files to end users. (In development) 
 <br>
 <br>
+</details>
 Other Landing Pages:
 <br>
 <br>
