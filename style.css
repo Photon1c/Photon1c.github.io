@@ -1,0 +1,27 @@
+/* style.css */
+.cbttol-table {
+  width: 90%;
+  margin: 1rem auto;
+  border-collapse: collapse;
+  font-family: 'Courier New', monospace;
+  font-size: 14px;
+  background-color: #111;
+  color: #eee;
+  border: 1px solid #444;
+}
+
+.cbttol-table th,
+.cbttol-table td {
+  border: 1px solid #444;
+  padding: 0.5rem;
+  text-align: center;
+}
+
+.cbttol-table th {
+  background-color: #222;
+  color: #ffc107;
+}
+
+.cbttol-table tr:nth-child(even) {
+  background-color: #1a1a1a;
+}
