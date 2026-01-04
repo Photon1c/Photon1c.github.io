@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Ghost Cookies - Fraud Detection</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body, html {
+            width: 100%;
+            height: 100%;
+            background: #000;
+            font-family: 'Courier New', monospace;
+            color: #00FF88;
+            overflow: hidden;
+        }
+        .container {
+            display: flex;
+            width: 100%;
+            height: 100vh;
+        }
+        .controls {
+            width: 380px;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.95);
+            border-right: 2px solid #00FF88;
+            overflow-y: auto;
+            box-shadow: 0 0 20px rgba(0, 255, 136, 0.3);
+        }
+        .canvas-container {
+            flex: 1;
+            position: relative;
+            background: #000;
+        }
+        canvas {
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+        .title {
+            font-size: 24px;
+            margin-bottom: 25px;
+            text-align: center;
+            border-bottom: 2px solid #00FF88;
+            padding-bottom: 15px;
+            text-shadow: 0 0 10px #00FF88;
+            letter-spacing: 2px;
+            font-weight: bold;
+        }
+        .subtitle {
+            font-size: 14px;
+            color: #00AA66;
+            text-align: center;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 15px;
+            color: #00FF88;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: bold;
+            text-rendering: optimizeLegibility;
+            -webkit-font-smoothing: antialiased;
+        }
+        select, input, button {
+            width: 100%;
+            padding: 10px;
+            background: #111;
+            color: #00FF88;
+            border: 1px solid #00FF88;
+            font-family: 'Courier New', monospace;
+            font-size: 13px;
+            transition: all 0.3s;
+        }
+        select:focus, input:focus {
+            outline: none;
+            border-color: #00FF88;
+            box-shadow: 0 0 10px rgba(0, 255, 136, 0.5);
+            background: #1a1a1a;
+        }
+        button:not(.shop-button) {
+            background: #00FF88;
+            color: #000;
+            border: none;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 5px;
+            padding: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 0 15px rgba(0, 255, 136, 0.4);
+        }
+        button:not(.shop-button):hover {
+            background: #00CC66;
+            box-shadow: 0 0 20px rgba(0, 255, 136, 0.6);
+        }
+        .slider-group {
+            margin-top: 15px;
+        }
+        .slider-label {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+        }
+        input[type="range"] {
+            width: 100%;
+            -webkit-appearance: none;
+            appearance: none;
+            height: 6px;
+            background: #005522;
+            outline: none;
+            border-radius: 3px;
+        }
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 16px;
+            height: 16px;
+            background: #00FF88;
+            cursor: pointer;
+            border-radius: 50%;
+            box-shadow: 0 0 10px #00FF88;
+        }
+        input[type="range"]::-moz-range-thumb {
+            width: 16px;
+            height: 16px;
+            background: #00FF88;
+            cursor: pointer;
+            border: none;
+            border-radius: 50%;
+            box-shadow: 0 0 10px #00FF88;
+        }
+        .metrics {
+            margin-top: 20px;
+            padding: 15px;
+            background: rgba(0, 255, 136, 0.1);
+            border: 1px solid #00FF88;
+            font-size: 14px;
+            line-height: 2.0;
+        }
+        .metrics-title {
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+            color: #00FF88;
+            border-bottom: 2px solid #005522;
+            padding-bottom: 10px;
+            font-size: 16px;
+        }
+        .metric-item {
+            margin: 10px 0;
+            display: flex;
+            justify-content: space-between;
+        }
+        .metric-label {
+            color: #00AA66;
+            font-size: 14px;
+        }
+        .metric-value {
+            color: #00FF88;
+            font-weight: bold;
+            font-size: 15px;
+        }
+        .fraud-indicator {
+            padding: 12px;
+            margin-top: 12px;
+            border: 2px solid;
+            border-radius: 4px;
+            font-weight: bold;
+            text-align: center;
+            font-size: 15px;
+        }
+        .fraud-low {
+            border-color: #00FF88;
+            background: rgba(0, 255, 136, 0.1);
+            color: #00FF88;
+        }
+        .fraud-medium {
+            border-color: #FFAA00;
+            background: rgba(255, 170, 0, 0.1);
+            color: #FFAA00;
+        }
+        .fraud-high {
+            border-color: #FF0000;
+            background: rgba(255, 0, 0, 0.1);
+            color: #FF0000;
+            animation: pulse 1s infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+        .shop-selector {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+        .shop-button {
+            padding: 14px 16px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.2s;
+            position: relative;
+            border: 3px solid rgba(0, 255, 136, 0.5);
+            background: rgba(0, 0, 0, 0.8);
+            color: #00FF88;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .shop-button:hover {
+            background: rgba(0, 255, 136, 0.3);
+            box-shadow: 0 0 15px rgba(0, 255, 136, 0.6);
+            border-color: #00FF88;
+            color: #FFFFFF;
+        }
+        .shop-button.active {
+            background: #00FF88;
+            color: #000;
+            box-shadow: 0 0 25px rgba(0, 255, 136, 1);
+            font-weight: bold;
+            border: 3px solid #00FF88;
+            outline: 3px solid rgba(0, 255, 136, 0.8);
+            outline-offset: 3px;
+        }
+        .shop-button.active::after {
+            content: "✓";
+            position: absolute;
+            right: 8px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #000;
+            font-weight: bold;
+            font-size: 16px;
+        }
+        .info-panel {
+            margin-top: 20px;
+            padding: 15px;
+            background: rgba(0, 85, 34, 0.3);
+            border: 1px solid #005522;
+            font-size: 13px;
+            line-height: 1.8;
+            color: #00AA66;
+        }
+        .info-panel strong {
+            font-size: 14px;
+            color: #00FF88;
+        }
+        #instructions-pane {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 600px;
+            max-width: 90vw;
+            max-height: 80vh;
+            background: rgba(0, 0, 0, 0.95);
+            border: 2px solid #00FF88;
+            padding: 30px;
+            z-index: 1000;
+            box-shadow: 0 0 30px rgba(0, 255, 136, 0.5);
+            overflow-y: auto;
+            display: none;
+        }
+        #instructions-pane h2 {
+            color: #00FF88;
+            margin-bottom: 20px;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border-bottom: 2px solid #00FF88;
+            padding-bottom: 15px;
+        }
+        #instructions-pane .close-btn {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: #00FF88;
+            color: #000;
+            border: none;
+            width: 30px;
+            height: 30px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 18px;
+            line-height: 1;
+        }
+        #instructions-pane .close-btn:hover {
+            background: #00CC66;
+        }
+        #instructions-pane .section {
+            margin-bottom: 25px;
+        }
+        #instructions-pane .section-title {
+            color: #00FF88;
+            font-weight: bold;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            font-size: 13px;
+        }
+        #instructions-pane .section-content {
+            color: #00AA66;
+            line-height: 1.8;
+            font-size: 12px;
+        }
+        #instructions-pane ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        #instructions-pane li {
+            margin: 8px 0;
+            padding-left: 20px;
+            position: relative;
+        }
+        #instructions-pane li:before {
+            content: "▶";
+            position: absolute;
+            left: 0;
+            color: #00FF88;
+        }
+        #instructions-prompt {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            color: #FFFFFF;
+            font-style: italic;
+            font-size: 14px;
+            z-index: 100;
+            animation: blink 1.5s infinite;
+            text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+            pointer-events: none;
+        }
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.4; }
+        }
+        #source-link {
+            position: fixed;
+            top: 50px;
+            right: 20px;
+            color: #00FF88;
+            font-size: 14px;
+            text-decoration: none;
+            z-index: 100;
+            padding: 8px 12px;
+            border: 1px solid #00FF88;
+            background: rgba(0, 0, 0, 0.7);
+            transition: all 0.3s;
+            font-family: 'Courier New', monospace;
+        }
+        #source-link:hover {
+            background: rgba(0, 255, 136, 0.2);
+            box-shadow: 0 0 10px rgba(0, 255, 136, 0.5);
+        }
+    </style>
+</head>
+<body>
+    <div id="instructions-prompt">Press <strong>I</strong> for instructions</div>
+    <a id="source-link" href="https://photon1c.github.io/simulators/ghostcookies/" target="_blank">Source</a>
+    
+    <div class="container">
+        <div class="controls">
+            <div class="title">GHOST COOKIES</div>
+            <div class="subtitle">Fraud Detection System</div>
+            
+            <div class="form-group">
+                <label>Shop Type:</label>
+                <div class="shop-selector">
+                    <button class="shop-button active" onclick="selectShop('efficient')" id="btn-efficient">Efficient</button>
+                    <button class="shop-button" onclick="selectShop('inefficient')" id="btn-inefficient">Inefficient</button>
+                    <button class="shop-button" onclick="selectShop('mandelbrot')" id="btn-mandelbrot">Mandelbrot</button>
+                </div>
+            </div>
+            
+            <div class="form-group slider-group">
+                <div class="slider-label">
+                    <span>Operation Periods:</span>
+                    <span id="periods-value">50</span>
+                </div>
+                <input type="range" id="periods" min="10" max="200" value="50" step="5">
+            </div>
+            
+            <div class="form-group slider-group">
+                <div class="slider-label">
+                    <span style="font-size: 14px;">Resource Level:</span>
+                    <span id="resources-value" style="font-size: 14px; font-weight: bold;">100</span>
+                </div>
+                <input type="range" id="resources" min="50" max="200" value="100" step="5">
+            </div>
+            
+            <div class="form-group slider-group">
+                <div class="slider-label">
+                    <span>Fraud Threshold:</span>
+                    <span id="threshold-value">0.3</span>
+                </div>
+                <input type="range" id="threshold" min="0.1" max="0.9" value="0.3" step="0.05">
+            </div>
+            
+            <div class="form-group slider-group">
+                <div class="slider-label">
+                    <span style="font-size: 14px;">Markov Depth:</span>
+                    <span id="depth-value" style="font-size: 14px; font-weight: bold;">3</span>
+                </div>
+                <input type="range" id="depth" min="1" max="5" value="3" step="1">
+            </div>
+            
+            <div class="form-group slider-group">
+                <div class="slider-label">
+                    <span>Fractal Complexity:</span>
+                    <span id="complexity-value">2.0</span>
+                </div>
+                <input type="range" id="complexity" min="0.5" max="4.0" value="2.0" step="0.1">
+            </div>
+            
+            <div class="form-group">
+                <button onclick="resetView()">Reset View</button>
+                <button onclick="toggleAnimation()" id="btn-animate">Pause Animation</button>
+            </div>
+            
+            <div class="metrics" id="metrics">
+                <div class="metrics-title">Efficiency Metrics</div>
+                <div class="metric-item">
+                    <span class="metric-label">Efficiency Score:</span>
+                    <span class="metric-value" id="efficiency">-</span>
+                </div>
+                <div class="metric-item">
+                    <span class="metric-label">Cost Density:</span>
+                    <span class="metric-value" id="cost-density">-</span>
+                </div>
+                <div class="metric-item">
+                    <span class="metric-label">Markov Stack Height:</span>
+                    <span class="metric-value" id="markov-height">-</span>
+                </div>
+                <div class="metric-item">
+                    <span class="metric-label">Fractal Dimension:</span>
+                    <span class="metric-value" id="fractal-dim">-</span>
+                </div>
+                <div class="fraud-indicator fraud-low" id="fraud-indicator">
+                    <div>FRAUD PROBABILITY: <span id="fraud-prob">0%</span></div>
+                </div>
+            </div>
+            
+            <div class="info-panel" id="info-panel">
+                <strong>Second-Order Benefits:</strong><br>
+                <span id="second-order-info">Analyzing hidden gains...</span>
+            </div>
+        </div>
+        
+        <div class="canvas-container">
+            <canvas id="canvas"></canvas>
+        </div>
+    </div>
+    
+    <div id="instructions-pane">
+        <button class="close-btn" onclick="toggleInstructions()">×</button>
+        <h2>Instructions</h2>
+        
+        <div class="section">
+            <div class="section-title">Navigation Controls</div>
+            <div class="section-content">
+                <ul>
+                    <li><strong>Mouse Wheel:</strong> Zoom in/out</li>
+                    <li><strong>Left Mouse + Drag:</strong> Pan the view</li>
+                    <li><strong>Right Mouse + Drag:</strong> Rotate camera</li>
+                    <li><strong>W/A/S/D Keys:</strong> Pan view (W=up, S=down, A=left, D=right)</li>
+                    <li><strong>Arrow Keys:</strong> Rotate camera (↑=pitch up, ↓=pitch down, ←=yaw left, →=yaw right)</li>
+                    <li><strong>&lt; / &gt; Keys:</strong> Zoom in/out</li>
+                    <li><strong>I Key:</strong> Toggle this instructions pane</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="section">
+            <div class="section-title">Shop Types</div>
+            <div class="section-content">
+                <ul>
+                    <li><strong>Efficient Shop:</strong> Optimal resource allocation with low cost and high efficiency (85-95% efficiency, 0.2-0.3 cost)</li>
+                    <li><strong>Inefficient Shop:</strong> Clear suboptimal patterns with high cost and low efficiency (30-50% efficiency, 0.6-0.9 cost). May show hidden benefits like buffer capacity.</li>
+                    <li><strong>Mandelbrot Shop:</strong> Complex fractal-based patterns that appear inefficient but enable predictive optimization and proactive fraud detection</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="section">
+            <div class="section-title">Operational Phases</div>
+            <div class="section-content">
+                <strong>Phase 1: Operation Generation</strong>
+                <ul>
+                    <li>Generates operations across multiple time periods (cycles)</li>
+                    <li>Each operation has cost, efficiency, and resource metrics</li>
+                    <li>Operations represent one business cycle in the timeline</li>
+                </ul>
+                <strong>Phase 2: Markov Blanket Analysis</strong>
+                <ul>
+                    <li>Analyzes dependency relationships (parents and spouses)</li>
+                    <li>Exponential cost stacking: each dependency layer multiplies costs (1.2x, 1.4x, 1.6x)</li>
+                    <li>Red lines = high inefficiency, Green lines = low inefficiency</li>
+                </ul>
+                <strong>Phase 3: Fractal Pattern Generation</strong>
+                <ul>
+                    <li>Mandelbrot shops generate complex fractal patterns</li>
+                    <li>Patterns reveal hidden optimization opportunities</li>
+                    <li>Animated points show evolving complexity over time</li>
+                </ul>
+                <strong>Phase 4: Metric Calculation</strong>
+                <ul>
+                    <li>Calculates efficiency, cost density, Markov stack height</li>
+                    <li>Evaluates fractal dimension and fraud probability</li>
+                    <li>Updates in real-time as parameters change</li>
+                </ul>
+                <strong>Phase 5: Second-Order Benefit Analysis</strong>
+                <ul>
+                    <li>Identifies hidden benefits of apparent inefficiencies</li>
+                    <li>Distinguishes between fraud and strategic complexity</li>
+                    <li>Reveals long-term optimization opportunities</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="section">
+            <div class="section-title">Visualization</div>
+            <div class="section-content">
+                <ul>
+                    <li><strong>X Axis:</strong> Operation Periods (time progression through cycles)</li>
+                    <li><strong>Y Axis:</strong> Efficiency Score (vertical height)</li>
+                    <li><strong>Z Axis:</strong> Cost Density (depth perspective)</li>
+                    <li><strong>Color:</strong> Resource Level (4th dimension - brighter = more resources)</li>
+                    <li><strong>Red Lines:</strong> High inefficiency in Markov blanket dependencies</li>
+                    <li><strong>Green Lines:</strong> Low inefficiency connections</li>
+                    <li><strong>Animated Points:</strong> Fractal complexity patterns (Mandelbrot Shop only)</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="section">
+            <div class="section-title">Parameters & Cycles</div>
+            <div class="section-content">
+                <strong>Operation Periods:</strong> Number of time cycles to analyze (more periods = longer analysis)
+                <br><strong>Resource Level:</strong> Available resources per operation cycle
+                <br><strong>Fraud Threshold:</strong> Sensitivity level for detecting anomalies (lower = more sensitive)
+                <br><strong>Markov Depth:</strong> Dependency layers analyzed (deeper = more complex cost stacking)
+                <br><strong>Fractal Complexity:</strong> Detail level of Mandelbrot patterns (higher = more complex)
+                <br><br>
+                <strong>Analysis Cycles:</strong>
+                <ul>
+                    <li><strong>Data Generation Cycle:</strong> Creates operations, Markov blankets, and fractals</li>
+                    <li><strong>Visualization Cycle:</strong> Renders 3D surface plots and connections</li>
+                    <li><strong>Real-Time Analysis Cycle:</strong> Updates metrics and fraud probability continuously</li>
+                    <li><strong>Interactive Exploration Cycle:</strong> Allows parameter adjustment and comparison</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="section">
+            <div class="section-title">Fraud Detection Mechanisms</div>
+            <div class="section-content">
+                The system detects fraud through multiple mechanisms:
+                <ul>
+                    <li><strong>Exponential Cost Stacking:</strong> Identifies when dependencies create exponentially growing costs beyond normal operations</li>
+                    <li><strong>Pattern Analysis:</strong> Compares actual efficiency against optimal baselines to detect anomalies</li>
+                    <li><strong>Fractal Complexity:</strong> Uses Mandelbrot calculations to identify hidden inefficiency patterns</li>
+                    <li><strong>Second-Order Analysis:</strong> Evaluates whether inefficiencies serve hidden purposes vs. true fraud</li>
+                </ul>
+                <br>
+                <strong>Key Insight:</strong> Not all inefficiencies are fraud—some enable superior long-term optimization through complex pattern recognition.
+            </div>
+        </div>
+    </div>
+    
+    <script src="mandelbrot.js"></script>
+</body>
+</html>
