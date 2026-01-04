@@ -23,12 +23,23 @@
             height: 100vh;
         }
         .controls {
-            width: 380px;
+            width: 420px;
+            min-width: 380px;
+            max-width: 600px;
             padding: 20px;
             background: rgba(0, 0, 0, 0.95);
             border-right: 2px solid #00FF88;
             overflow-y: auto;
+            overflow-x: hidden;
             box-shadow: 0 0 20px rgba(0, 255, 136, 0.3);
+            resize: horizontal;
+        }
+        .controls::-webkit-resizer {
+            background: #00FF88;
+            opacity: 0.3;
+        }
+        .controls:hover {
+            border-right: 2px solid #00FF88;
         }
         .canvas-container {
             flex: 1;
@@ -202,12 +213,12 @@
         .shop-selector {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 8px;
+            gap: 6px;
             margin-bottom: 20px;
         }
         .shop-button {
-            padding: 14px 16px;
-            font-size: 16px;
+            padding: 12px 8px;
+            font-size: 14px;
             font-weight: bold;
             cursor: pointer;
             transition: all 0.2s;
@@ -216,7 +227,10 @@
             background: rgba(0, 0, 0, 0.8);
             color: #00FF88;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 0.5px;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+            min-width: 0;
         }
         .shop-button:hover {
             background: rgba(0, 255, 136, 0.3);
