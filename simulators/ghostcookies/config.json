@@ -1,0 +1,8 @@
+{
+    "theme": {
+        "background": "#000000",
+        "foreground": "#00FF88",
+        "accent": "#005522",
+        "grid": "#003311"
+    }
+}
