@@ -1,6 +1,9 @@
 # Ghost Cookies - Fraud Detection Visualization
+![GitHub Project Landing Page](https://github.com/Photon1c/Photon1c.github.io/tree/main/simulators/ghostcookies)
 
-![cover](https://github.com/Photon1c/Photon1c.github.io/blob/main/images/ghostcookies.png)
+![cover](https://github.com/Photon1c/Photon1c.github.io/tree/main/images/ghostcookies.png)
+
+*Use a deployed HTTP server and navigate to localhost:yourport/mandelbrot.html to view*
 
 ## Overview
 
