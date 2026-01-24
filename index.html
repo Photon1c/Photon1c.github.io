@@ -1,74 +1,88 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Photon1c Landing Page</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-
+  <title>Photon1c Landing Page</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-<h1>Welcome To The Photon1c Landing Page</h1>
-<p>
-<img src="images/bulbbackground.png" alt="bulb" style="vertical-align: middle;" width="200" height="200" > 
-<br>
-<br>
-<details><summary>Projects in Active Development</summary>
-<br>
-<a href="https://cheddarbutler.com/threejs"> Working library of Three.js experiments </a>
-<br>
-<br>
-Full list of past, present and future projects, currently at 30:
-<br>
-<br>
-<link rel="stylesheet" href="style.css">
+  <h1>Welcome To The Photon1c Landing Page</h1>
 
-<div id="table-container"></div>
-<script>
-  fetch('styled_cbttol_table.md')
-    .then(resp => resp.text())
-    .then(html => document.getElementById('table-container').innerHTML = html);
-</script>
+  <p>
+    <img src="images/bulbbackground.png"
+         alt="bulb"
+         style="vertical-align: middle;"
+         width="200"
+         height="200">
+  </p>
 
-  
+  <details>
+    <summary>Projects in Active Development</summary>
 
+    <br>
+    <a href="https://cheddarbutler.com/threejs">Working library of Three.js experiments</a>
+    <br><br>
+    Full list of past, present and future projects, currently at 30:
+    <br><br>
 
+    <!-- Markdown-rendered table will be injected here -->
+    <div id="table-container"></div>
+  </details>
 
-</details>
-  
-<br>
-<details>
-<summary>The following projects are in deep development, check back for updates:</summary>
+  <br>
 
-  
-<br>
-- Gamma Dashboard - Displays Gamma function distribution for selected option chain (NDA bound and broker API specific)
-<br>
-<br>
-- Audiobook Maker - Extracts text from PDF file and produces an audio file of the transcribed text. (In development)
-<br>
-<br>
-- LLM Information Retrieval - Pinecone database retrieval set of functions to route LLM requests and store them for agent memories and actions. (Under wraps)
-<br>
-<br>
-- Option Chain Tearsheet - A continuation of pyfolio's report format but with selected functions for fundamental and technical analysis. (Under wraps)
-<br>
-<br>
-- Microsoft Teams Power Automate app - Clerical assistant app that routes calls, emails and files to end users. (In development) 
-<br>
-<br>
-</details>
-Other Landing Pages:
-<br>
-<br>
-<a href="https://github.com/Photon1c">Github Profile Page</a>
-<br>
-<a href="https://www.cheddarbutler.com">Cheddar Butler</a>
-<br>
-<a href="lawrenceassistant/index.html">Lawrence Assistant</a>
-<br>
-<a href="osint/squirloi/index.html">OSINT Projects</a>
-<br>
-<a href="https://conversationsapp-vakrmg56.b4a.run">Conversations Over The Horizon</a>
-</p>
+  <details>
+    <summary>The following projects are in deep development, check back for updates:</summary>
+
+    <br>
+    - Gamma Dashboard - Displays Gamma function distribution for selected option chain (NDA bound and broker API specific)
+    <br><br>
+    - Audiobook Maker - Extracts text from PDF file and produces an audio file of the transcribed text. (In development)
+    <br><br>
+    - LLM Information Retrieval - Pinecone database retrieval set of functions to route LLM requests and store them for agent memories and actions. (Under wraps)
+    <br><br>
+    - Option Chain Tearsheet - A continuation of pyfolio's report format but with selected functions for fundamental and technical analysis. (Under wraps)
+    <br><br>
+    - Microsoft Teams Power Automate app - Clerical assistant app that routes calls, emails and files to end users. (In development)
+    <br><br>
+  </details>
+
+  Other Landing Pages:
+  <br><br>
+  <a href="https://github.com/Photon1c">Github Profile Page</a>
+  <br>
+  <a href="https://www.cheddarbutler.com">Cheddar Butler</a>
+  <br>
+  <a href="lawrenceassistant/index.html">Lawrence Assistant</a>
+  <br>
+  <a href="osint/squirloi/index.html">OSINT Projects</a>
+  <br>
+  <a href="https://conversationsapp-vakrmg56.b4a.run">Conversations Over The Horizon</a>
+
+  <!-- Scripts at the end of body -->
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script>
+    fetch('styled_cbttol_table.md')
+      .then(resp => resp.text())
+      .then(md => {
+        // Convert Markdown to HTML
+        const html = marked.parse(md);
+        const container = document.getElementById('table-container');
+        container.innerHTML = html;
+
+        // Add styling class to first table
+        const table = container.querySelector('table');
+        if (table) {
+          table.classList.add('cbttol-table');
+        }
+      })
+      .catch(err => {
+        console.error('Error loading table markdown:', err);
+        document.getElementById('table-container').textContent =
+          'Failed to load project table.';
+      });
+  </script>
 </body>
+
 </html>
