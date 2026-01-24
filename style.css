@@ -10,18 +10,33 @@
   border: 1px solid #444;
 }
 
+/* Cells */
 .cbttol-table th,
 .cbttol-table td {
   border: 1px solid #444;
-  padding: 0.5rem;
+  padding: 0.5rem 0.75rem;
   text-align: center;
 }
 
-.cbttol-table th {
-  background-color: #222;
-  color: #ffc107;
+/* Header row — explicit + high contrast */
+.cbttol-table thead th {
+  background-color: #000;        /* darker than body */
+  color: #ffcc00;                /* high-contrast amber */
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
-.cbttol-table tr:nth-child(even) {
+/* Body striping */
+.cbttol-table tbody tr:nth-child(even) {
   background-color: #1a1a1a;
+}
+
+/* Section header rows (🧠 Framework, etc.) */
+.cbttol-table .section-header td {
+  background-color: #161616;
+  color: #7dd3fc;                /* subtle cyan accent */
+  font-weight: bold;
+  text-align: left;
+  padding-left: 0.75rem;
 }
