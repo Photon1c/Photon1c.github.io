@@ -61,28 +61,29 @@
   <a href="https://conversationsapp-vakrmg56.b4a.run">Conversations Over The Horizon</a>
 
   <!-- Scripts at the end of body -->
-  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-  <script>
-    fetch('styled_cbttol_table.md')
-      .then(resp => resp.text())
-      .then(md => {
-        // Convert Markdown to HTML
-        const html = marked.parse(md);
-        const container = document.getElementById('table-container');
-        container.innerHTML = html;
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<script>
+  fetch('styled_cbttol_table.md')
+    .then(resp => resp.text())
+    .then(md => {
+      // Convert Markdown to HTML
+      const html = marked.parse(md);
+      const container = document.getElementById('table-container');
+      container.innerHTML = html;
 
-        // Add styling class to first table
-        const table = container.querySelector('table');
-        if (table) {
-          table.classList.add('cbttol-table');
-        }
-      })
-      .catch(err => {
-        console.error('Error loading table markdown:', err);
-        document.getElementById('table-container').textContent =
-          'Failed to load project table.';
+      // Add styling class to ALL tables from the markdown
+      const tables = container.querySelectorAll('table');
+      tables.forEach(table => {
+        table.classList.add('cbttol-table');
       });
-  </script>
+    })
+    .catch(err => {
+      console.error('Error loading table markdown:', err);
+      document.getElementById('table-container').textContent =
+        'Failed to load project table.';
+    });
+</script>
+
 </body>
 
 </html>
