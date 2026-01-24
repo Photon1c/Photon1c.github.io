@@ -1,5 +1,9 @@
 # Landing page for project consilience, check back for updates.  
 
+## Update 1.23.26 
+
+A [master version index](http://photon1c.github.io/) is now available on the main landing page. To avoid project sprawl, dedicated development spaces for LLM agents have been created [1](https://github.com/Photon1c/cursor-agent-workspace), [2](https://github.com/Photon1c/EnterpriseCursorBuilds).
+
 ## Update 3.29.25
 
 Cursor has enabled an explosion of projects, from reviving 1980s wireframe visualization frameworks, to building powerful report generators on multiple topics (stocks, news, science, etc), the inevitable result has led to not uploading a lot of these projects while they are debugged and carefully curated as closed-source for now. Making them public presents a significant time investment to maintain and it is also not very fruitful for a Github account with zero stars and followers. Check back in a few months to see if these repositories are made public, for now a Meta-like lockdown is in effect for this account.  
