@@ -1,4 +1,6 @@
 /* style.css */
+
+/* Base table styling */
 .cbttol-table {
   width: 90%;
   margin: 1rem auto;
@@ -18,24 +20,22 @@
   text-align: center;
 }
 
-/* Header row — explicit + high contrast */
-.cbttol-table thead th {
-  background-color: #000;        /* darker than body */
-  color: #ffcc00;                /* high-contrast amber */
+/* Make sure headers are readable on dark background */
+.cbttol-table th {
+  background-color: #000 !important;   /* force dark header */
+  color: #ffcc00 !important;           /* force amber text */
   font-weight: bold;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
 }
 
-/* Body striping */
+/* Zebra striping for body rows */
 .cbttol-table tbody tr:nth-child(even) {
   background-color: #1a1a1a;
 }
 
-/* Section header rows (🧠 Framework, etc.) */
+/* Section header rows: 🧠 Framework, 📈 Market, etc. */
 .cbttol-table .section-header td {
-  background-color: #161616;
-  color: #7dd3fc;                /* subtle cyan accent */
+  background-color: #161616 !important;
+  color: #7dd3fc !important;
   font-weight: bold;
   text-align: left;
   padding-left: 0.75rem;
